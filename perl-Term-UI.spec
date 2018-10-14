@@ -4,21 +4,30 @@
 #
 Name     : perl-Term-UI
 Version  : 0.46
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libterm-ui-perl/libterm-ui-perl_0.46-1.debian.tar.xz
 Summary  : 'User interfaces via Term::ReadLine made easy'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Term-UI-license
-Requires: perl-Term-UI-man
-Requires: perl(Log::Message::Simple)
+Requires: perl-Term-UI-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
+BuildRequires : perl(Log::Message)
 BuildRequires : perl(Log::Message::Simple)
 
 %description
 Please refer to 'perldoc Term::UI' after installation for details.
 #####################################################################
+
+%package dev
+Summary: dev components for the perl-Term-UI package.
+Group: Development
+Provides: perl-Term-UI-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Term-UI package.
+
 
 %package license
 Summary: license components for the perl-Term-UI package.
@@ -28,19 +37,11 @@ Group: Default
 license components for the perl-Term-UI package.
 
 
-%package man
-Summary: man components for the perl-Term-UI package.
-Group: Default
-
-%description man
-man components for the perl-Term-UI package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Term-UI-0.46
-mkdir -p %{_topdir}/BUILD/Term-UI-0.46/deblicense/
+cd ..
+%setup -q -T -D -n Term-UI-0.46 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Term-UI-0.46/deblicense/
 
 %build
@@ -65,12 +66,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Term-UI
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Term-UI/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Term-UI
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Term-UI/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -79,14 +80,14 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Term/UI.pm
-/usr/lib/perl5/site_perl/5.26.1/Term/UI/History.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Term/UI.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Term/UI/History.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Term-UI/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Term::UI.3
 /usr/share/man/man3/Term::UI::History.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Term-UI/deblicense_copyright
