@@ -4,11 +4,11 @@
 #
 Name     : perl-Term-UI
 Version  : 0.46
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libterm-ui-perl/libterm-ui-perl_0.46-1.debian.tar.xz
-Summary  : 'User interfaces via Term::ReadLine made easy'
+Summary  : User interfaces via Term::ReadLine made easy
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Term-UI-license = %{version}-%{release}
@@ -24,6 +24,7 @@ Please refer to 'perldoc Term::UI' after installation for details.
 Summary: dev components for the perl-Term-UI package.
 Group: Development
 Provides: perl-Term-UI-devel = %{version}-%{release}
+Requires: perl-Term-UI = %{version}-%{release}
 
 %description dev
 dev components for the perl-Term-UI package.
@@ -42,7 +43,7 @@ license components for the perl-Term-UI package.
 cd ..
 %setup -q -T -D -n Term-UI-0.46 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Term-UI-0.46/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Term-UI-0.46/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
