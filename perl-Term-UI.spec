@@ -4,7 +4,7 @@
 #
 Name     : perl-Term-UI
 Version  : 0.46
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libterm-ui-perl/libterm-ui-perl_0.46-1.debian.tar.xz
@@ -79,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Term-UI
-cp %{_builddir}/Term-UI-0.46/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Term-UI/7ef1cc1be0863727457d04623ccac33e2edf9a84
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Term-UI/7ef1cc1be0863727457d04623ccac33e2edf9a84
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,5 +104,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Term/UI.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Term/UI/History.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Term/UI.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Term/UI/History.pm
