@@ -4,7 +4,7 @@
 #
 Name     : perl-Term-UI
 Version  : 0.46
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.46.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libterm-ui-perl/libterm-ui-perl_0.46-1.debian.tar.xz
@@ -104,5 +104,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/Term/UI.pm
-/usr/lib/perl5/vendor_perl/5.30.2/Term/UI/History.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Term/UI.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Term/UI/History.pm
