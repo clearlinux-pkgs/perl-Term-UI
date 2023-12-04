@@ -4,7 +4,7 @@
 #
 Name     : perl-Term-UI
 Version  : 0.50
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.50.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Term-UI-0.50.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libterm-ui-perl/libterm-ui-perl_0.46-1.debian.tar.xz
